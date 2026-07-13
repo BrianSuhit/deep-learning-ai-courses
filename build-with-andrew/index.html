@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Card Message Generator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, #fff1eb 0%, #ace0f9 100%);
+        }
+        .container {
+            display: flex;
+            gap: 2rem;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 900px;
+        }
+        .form-panel {
+            flex: 1;
+        }
+        .card-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            overflow-y: auto;
+            max-height: 500px; /* Or height of form */
+            padding-right: 1rem;
+        }
+
+        .page-title {
+            font-family: 'Caveat', cursive;
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff6f61, #ffc107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+        .form-title {
+            text-align: center;
+            color: #555;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .button-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            background-color: #ff6f61;
+            color: white;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #e65a50;
+        }
+        .lucky-button {
+            background-color: #28a745;
+        }
+        .lucky-button:hover {
+            background-color: #218838;
+        }
+        .card-message {
+            padding: 1rem;
+            background-color: #fffaf0;
+            border-left: 2px dashed #ffca28;
+            color: #333;
+            white-space: pre-wrap;
+            width: 100%;
+            height: 100%;
+            min-height: 150px;
+            font-family: 'Caveat', cursive;
+            font-size: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+        }
+        .copy-button {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            width: auto;
+            background-color: #ffca28;
+            color: #333;
+        }
+        .copy-button:hover {
+            background-color: #fbc02d;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="page-title">The Ultimate Birthday Card Generator</h1>
+    <div class="container">
+        <div class="form-panel">
+            <h1 class="form-title">🎉 Birthday Message Helper 🎉</h1>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="e.g., Alex">
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" placeholder="e.g., 30">
+            </div>
+            <div class="form-group">
+                <label for="hobby">Hobby:</label>
+                <input type="text" id="hobby" placeholder="e.g., knitting">
+            </div>
+            <div class="form-group">
+                <label for="adjective">Adjective:</label>
+                <input type="text" id="adjective" placeholder="e.g., silly">
+            </div>
+            <div class="form-group">
+                <label for="plural-noun">Plural Noun:</label>
+                <input type="text" id="plural-noun" placeholder="e.g., potatoes">
+            </div>
+            <div class="button-group">
+                <button onclick="generateMessage()">Generate Message</button>
+                <button onclick="feelingLucky()" class="lucky-button">I'm Feeling Lucky</button>
+            </div>
+        </div>
+        <div class="card-panel">
+            <div class="card-message initial-message">
+                Your messages will appear here...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function feelingLucky() {
+            const names = ["Captain Awesome", "A mysterious stranger", "Your long-lost twin", "Professor Giggles"];
+            const hobbies = ["underwater basket weaving", "competitive napping", "collecting rubber ducks", "arguing with squirrels"];
+            const adjectives = ["fluffy", "bewildered", "sparkly", "suspiciously sticky"];
+            const pluralNouns = ["goblins", "pancakes", "sentient teapots", "singing potatoes"];
+
+            // Helper to get a random item from an array
+            const getRandomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+            document.getElementById('name').value = getRandomItem(names);
+            document.getElementById('age').value = Math.floor(Math.random() * (99 - 18 + 1)) + 18;
+            document.getElementById('hobby').value = getRandomItem(hobbies);
+            document.getElementById('adjective').value = getRandomItem(adjectives);
+            document.getElementById('plural-noun').value = getRandomItem(pluralNouns);
+        }
+
+        function generateMessage() {
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const hobby = document.getElementById('hobby').value;
+            const adjective = document.getElementById('adjective').value;
+            const pluralNoun = document.getElementById('plural-noun').value;
+            const cardPanel = document.querySelector('.card-panel');
+
+            if (!name || !age || !hobby || !adjective || !pluralNoun) {
+                alert('Please fill out all fields!');
+                return;
+            }
+
+            const messages = [
+                `Happy birthday, ${name}! You're now ${age}. Don't worry, you're not old, you're just... vintage! May your day be filled with more joy than a marathon of ${hobby} and a mountain of ${adjective} ${pluralNoun}.`,
+                `Congrats on turning ${age}, ${name}! You're at the perfect age to be wise enough to know better, but young enough to do it anyway. Now go enjoy some ${hobby} and watch out for those ${adjective} ${pluralNoun}!`,
+                `Happy ${age}th birthday, ${name}! They say age is just a number, but in your case, it's a really big one. Just kidding! Hope you have a fantastic day of ${hobby} and get lots of ${adjective} ${pluralNoun}.`,
+                `To ${name}, on your ${age}th birthday! Don't let aging get you down. It's too hard to get back up again! Have a great day, enjoy your ${hobby}, and may your cake be free of ${adjective} ${pluralNoun}.`,
+                `Happy birthday, ${name}! At ${age}, you've reached the age where your back goes out more than you do. I hope you get a pile of ${adjective} ${pluralNoun}!`
+            ];
+
+            const initialMessage = document.querySelector('.initial-message');
+            if (initialMessage) {
+                initialMessage.remove();
+            }
+
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            const messageText = messages[randomIndex];
+
+            const newCard = document.createElement('div');
+            newCard.className = 'card-message';
+
+            const messageSpan = document.createElement('span');
+            messageSpan.textContent = messageText;
+
+            const copyButton = document.createElement('button');
+            copyButton.textContent = 'Copy';
+            copyButton.className = 'copy-button';
+            copyButton.onclick = function() {
+                navigator.clipboard.writeText(messageText).then(() => {
+                    copyButton.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyButton.textContent = 'Copy';
+                    }, 2000);
+                });
+            };
+
+            newCard.appendChild(messageSpan);
+            newCard.appendChild(copyButton);
+
+            // Insert the new card at the top of the panel
+            cardPanel.insertBefore(newCard, cardPanel.firstChild);
+        }
+    </script>
+
+</body>
+</html>

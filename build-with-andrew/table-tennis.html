@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Tennis</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: sans-serif;
+            color: white;
+        }
+        .game-container {
+            position: relative;
+        }
+        canvas {
+            background-color: #2c6b2f;
+            border-radius: 5px;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+        h1, h2 {
+            margin: 0.5em;
+        }
+        .form-group {
+            margin: 1em 0;
+        }
+        label {
+            margin-right: 10px;
+        }
+        select, input, button {
+            padding: 8px 12px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #last-score {
+            margin-top: 2em;
+            font-size: 0.9em;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="gameCanvas"></canvas>
+
+        <div id="setup-screen" class="overlay">
+            <h1>Table Tennis</h1>
+            <div class="form-group">
+                <label for="difficulty">Difficulty:</label>
+                <select id="difficulty">
+                    <option value="0.07">Easy</option>
+                    <option value="0.1" selected>Medium</option>
+                    <option value="0.13">Hard</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="win-score">Points to Win:</label>
+                <input type="number" id="win-score" value="5" min="1">
+            </div>
+            <button id="start-button">Start Game</button>
+            <div id="last-score" class="hidden"></div>
+        </div>
+
+        <div id="game-over-screen" class="overlay hidden">
+            <h1 id="winner-message"></h1>
+            <h2 id="final-score"></h2>
+            <button id="play-again-button">Play Again</button>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // UI Elements
+        const setupScreen = document.getElementById('setup-screen');
+        const gameOverScreen = document.getElementById('game-over-screen');
+        const startButton = document.getElementById('start-button');
+        const playAgainButton = document.getElementById('play-again-button');
+        const lastScoreDisplay = document.getElementById('last-score');
+
+        // Set canvas dimensions
+        canvas.width = 800;
+        canvas.height = 500;
+
+        // --- Game Objects ---
+
+        // Ball
+        const ball = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            radius: 10,
+            speed: 7,
+            velocityX: 5,
+            velocityY: 5,
+            color: 'WHITE'
+        };
+
+        // User Paddle
+        const user = {
+            x: 10,
+            y: (canvas.height - 100) / 2,
+            width: 10,
+            height: 100,
+            score: 0,
+            color: 'beige',
+            dy: 0 // Vertical velocity
+        };
+
+        // Computer Paddle
+        const com = {
+            x: canvas.width - 20,
+            y: (canvas.height - 100) / 2,
+            width: 10,
+            height: 100,
+            score: 0, // Score is now part of gameState
+            color: 'beige'
+        };
+
+        // Net
+        const net = {
+            x: (canvas.width - 2) / 2,
+            y: 0,
+            width: 2,
+            height: 10,
+            color: 'WHITE'
+        };
+
+        // --- Game State ---
+        let gameState = {
+            state: 'setup', // 'setup', 'playing', 'gameOver'
+            userScore: 0,
+            comScore: 0,
+            winningScore: 5,
+            difficulty: 0.1, // Computer paddle speed factor
+        };
+
+        // --- Drawing Functions ---
+
+        function drawRect(x, y, w, h, color) {
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, w, h);
+        }
+
+        function drawCircle(x, y, r, color) {
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI * 2, false);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        function drawText(text, x, y, color) {
+            ctx.fillStyle = color;
+            ctx.font = '75px fantasy';
+            ctx.fillText(text, x, y);
+        }
+
+        function drawNet() {
+            for (let i = 0; i <= canvas.height; i += 15) {
+                drawRect(net.x, net.y + i, net.width, net.height, net.color);
+            }
+        }
+
+        // --- Game Logic ---
+
+        // Reset ball to center
+        function resetBall() {
+            ball.x = canvas.width / 2;
+            ball.y = canvas.height / 2;
+            // Change direction to the opposite of who scored last
+            ball.velocityX = -ball.velocityX;
+            ball.speed = 7;
+        }
+
+        // Collision detection
+        function collision(b, p) {
+            p.top = p.y;
+            p.bottom = p.y + p.height;
+            p.left = p.x;
+            p.right = p.x + p.width;
+
+            b.top = b.y - b.radius;
+            b.bottom = b.y + b.radius;
+            b.left = b.x - b.radius;
+            b.right = b.x + b.radius;
+
+            return p.left < b.right && p.top < b.bottom && p.right > b.left && p.bottom > b.top;
+        }
+
+        // Update function: move paddles, ball, and handle logic
+        function update() {
+            if (gameState.state !== 'playing') return;
+
+            // Move user paddle
+            user.y += user.dy;
+            if (user.y < 0) user.y = 0;
+            if (user.y + user.height > canvas.height) user.y = canvas.height - user.height;
+
+            // Computer AI based on difficulty
+            com.y += ((ball.y - (com.y + com.height / 2))) * gameState.difficulty;
+            // Clamp computer paddle to canvas
+            if (com.y < 0) com.y = 0;
+            if (com.y + com.height > canvas.height) com.y = canvas.height - com.height;
+            
+            // Move the ball
+            ball.x += ball.velocityX;
+            ball.y += ball.velocityY;
+
+            // Bounce off top and bottom walls
+            if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+                ball.velocityY = -ball.velocityY;
+            }
+
+            // Determine which paddle is being hit
+            let player = (ball.x < canvas.width / 2) ? user : com;
+
+            // If a collision happens
+            if (collision(ball, player)) {
+                // Calculate where the ball hit the paddle
+                let collidePoint = (ball.y - (player.y + player.height / 2));
+                // Normalize the value to be between -1 and 1
+                collidePoint = collidePoint / (player.height / 2);
+
+                // Calculate the angle in Radian
+                let angleRad = (Math.PI / 4) * collidePoint;
+
+                // Change the X and Y velocity direction
+                let direction = (ball.x < canvas.width / 2) ? 1 : -1;
+                ball.velocityX = direction * ball.speed * Math.cos(angleRad);
+                ball.velocityY = ball.speed * Math.sin(angleRad);
+
+                // Increase speed every time a paddle is hit
+                ball.speed += 0.2;
+            }
+
+            // Update score and reset ball
+            if (ball.x - ball.radius < 0) {
+                gameState.comScore++;
+                resetBall();
+            } else if (ball.x + ball.radius > canvas.width) {
+                gameState.userScore++;
+                resetBall();
+            }
+
+            // Check for winner
+            if (gameState.userScore >= gameState.winningScore || gameState.comScore >= gameState.winningScore) {
+                endGame();
+            }
+        }
+
+        function endGame() {
+            gameState.state = 'gameOver';
+            document.getElementById('winner-message').innerText = `${gameState.userScore > gameState.comScore ? 'You Win!' : 'Computer Wins!'}`;
+            document.getElementById('final-score').innerText = `Final Score: ${gameState.userScore} - ${gameState.comScore}`;
+            gameOverScreen.classList.remove('hidden');
+        }
+
+        // Render function: draw everything on the canvas
+        function render() {
+            // Clear the canvas with a black rectangle
+            drawRect(0, 0, canvas.width, canvas.height, "#2c6b2f");
+
+            // Draw the net
+            drawNet();
+
+            // Draw the scores
+            drawText(gameState.userScore, canvas.width / 4, canvas.height / 5, "GRAY");
+            drawText(gameState.comScore, 3 * canvas.width / 4, canvas.height / 5, "GRAY");
+
+            // Draw the paddles
+            drawRect(user.x, user.y, user.width, user.height, user.color);
+            drawRect(com.x, com.y, com.width, com.height, com.color);
+
+            // Draw the ball
+            drawCircle(ball.x, ball.y, ball.radius, ball.color);
+        }
+
+        // Game loop
+        function gameLoop() {
+            update();
+            render();
+            requestAnimationFrame(gameLoop);
+        }
+
+        // --- Event Listeners ---
+        const paddleSpeed = 10;
+
+        startButton.addEventListener('click', () => {
+            gameState.winningScore = parseInt(document.getElementById('win-score').value, 10) || 5;
+            gameState.difficulty = parseFloat(document.getElementById('difficulty').value);
+            
+            gameState.userScore = 0;
+            gameState.comScore = 0;
+            gameState.state = 'playing';
+
+            resetBall();
+            ball.velocityX = 5; // Ensure ball starts moving towards player
+
+            setupScreen.classList.add('hidden');
+        });
+
+        playAgainButton.addEventListener('click', () => {
+            // Show last game's score on the setup screen
+            lastScoreDisplay.innerText = `Last Game: Player ${gameState.userScore} - Computer ${gameState.comScore}`;
+            lastScoreDisplay.classList.remove('hidden');
+
+            // Reset game state for a new game
+            gameState.state = 'setup';
+            gameState.userScore = 0;
+            gameState.comScore = 0;
+
+            // Reset paddle positions
+            user.y = (canvas.height - 100) / 2;
+            com.y = (canvas.height - 100) / 2;
+
+            gameOverScreen.classList.add('hidden');
+            setupScreen.classList.remove('hidden');
+        });
+
+        window.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowUp") user.dy = -paddleSpeed;
+            else if (event.key === "ArrowDown") user.dy = paddleSpeed;
+        });
+
+        window.addEventListener("keyup", () => {
+            user.dy = 0;
+        });
+
+        // Start the game loop
+        requestAnimationFrame(gameLoop);
+
+    </script>
+</body>
+</html>
