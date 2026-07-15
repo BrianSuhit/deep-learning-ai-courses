@@ -57,3 +57,10 @@ Add a task group to the plan to have a minimal AgentClinic home page and update 
 ## Prompt 1
 
 Implement the remaining task groups.
+
+# Lesson 08 — Prompts
+
+## Prompt 1
+
+Mark this specs/roadmap.md phase as complete, commit this work, switch to main, and merge this branch, then delete it.
+

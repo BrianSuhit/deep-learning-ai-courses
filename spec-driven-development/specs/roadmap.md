@@ -2,7 +2,7 @@
 
 El desarrollo se dividirá en fases pequeñas y manejables para asegurar una entrega incremental y de alta calidad.
 
-## Fase 1: Estructura y Estilo Base
+## Fase 1: Estructura y Estilo Base ✅ Completada
 
 *   **Objetivo:** Crear la estructura HTML básica de la landing page y aplicar un diseño CSS inicial.
 *   **Tareas:**
