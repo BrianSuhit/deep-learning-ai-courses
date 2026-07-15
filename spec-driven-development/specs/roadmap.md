@@ -9,7 +9,7 @@ El desarrollo se dividirá en fases pequeñas y manejables para asegurar una ent
     *   Definir el `index.html` con las secciones principales (Inicio, Cómo Reciclar, Mapa, Guía de Separación).
     *   Crear una hoja de estilos `styles.css` con la paleta de colores, tipografías y layout general siguiendo la estética "eco-friendly".
 
-## Fase 2: Contenido Estático
+## Fase 2: Contenido Estático ✅ Completada
 
 *   **Objetivo:** Poblar la página con la información esencial para el usuario.
 *   **Tareas:**

@@ -17,3 +17,22 @@ y este proyecto se adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.
 
 ### Commits
 -   Total de commits para esta versión: 1 (`feat(SDD): Complete Phase 1 - Base Structure and Style`)
+
+## [0.2.0] - 2026-07-15
+
+### Added
+-   **Especificación de Feature (Fase 2)**
+    -   Se crearon los archivos de especificación (`plan.md`, `requirements.md`, `validation.md`) para la feature "Contenido Estático".
+
+### Commits
+-   Total de commits para esta versión: 1 (`feat(SDD): Create spec files for Static Content feature`)
+
+## [0.3.0] - 2026-07-15
+
+### Added
+-   **Contenido Estático (Fase 2)**
+    -   Se añadió contenido a la sección "Cómo Reciclar" con pasos claros y sencillos.
+    -   Se implementó la "Guía de Separación de Residuos" utilizando un diseño de tarjetas para distintos materiales.
+
+### Commits
+-   Total de commits para esta versión: 1 (`feat(SDD): Implement and complete Phase 2 - Static Content`)
