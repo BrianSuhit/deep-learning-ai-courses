@@ -50,3 +50,10 @@ Important: Do not write these files to disk yet. Present the content to me first
 ## Prompt 2
 
 Add a task group to the plan to have a minimal AgentClinic home page and update the rest of the feature spec to be in sync.
+
+
+# Lesson 07 — Prompts
+
+## Prompt 1
+
+Implement the remaining task groups.
