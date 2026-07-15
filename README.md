@@ -14,3 +14,7 @@ This was the first short course I completed. It provides a hands-on introduction
 #### 2. Pair Programming with a Large Language Model
 
 This course explores how to use chat interfaces and APIs as coding assistants, similar in spirit to the early workflows introduced in Build with Andrew. It is a bit outdated now, especially with the rise of more advanced agent-based tools, but it still helps explain what happens behind the scenes when you describe a task in natural language and receive code in return. It is a useful historical reference for understanding the foundations of AI-assisted development.
+
+#### 3. Spec-Driven Development
+
+This project applies the principles of Spec-Driven Development. It reuses the "Punto Limpio" landing page project, originally developed in the "Build with Andrew" course. The approach involves defining clear specifications before implementation, then following an incremental and well-structured roadmap, demonstrating how an existing project can be refocused under a new development methodology.
