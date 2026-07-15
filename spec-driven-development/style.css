@@ -139,9 +139,10 @@ section h2 {
     margin-top: 3rem;
 }
 
-.map-container img {
-    max-width: 100%;
-    height: auto;
+/* Estilos para el contenedor del mapa interactivo */
+#map-interactive {
+    height: 500px; /* Altura fija para el mapa */
+    width: 100%;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }

@@ -45,3 +45,13 @@ y este proyecto se adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.
 
 ### Commits
 -   Total de commits para esta versión: 1 (`feat(SDD): Implement Phase 3 - Initial Static Map`)
+
+## [0.5.0] - 2026-07-15
+
+### Added
+-   **Mapa Interactivo (Fase 4)**
+    -   Se reemplazó el mapa estático por una versión interactiva con Leaflet.js.
+    -   Se añadieron marcadores para los 7 Puntos Limpios de Tandil, cada uno con un pop-up informativo.
+
+### Commits
+-   Total de commits para esta versión: 1 (`feat(SDD): Implement and complete Phase 4 - Interactive Map`)

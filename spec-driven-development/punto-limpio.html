@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link rel="stylesheet" href="responsive.css">
 </head>
 <body>
@@ -57,8 +59,9 @@
             <div class="container">
                 <h2>Mapa de Puntos Limpios</h2>
                 <div class="map-container">
-                    <img src="https://static-maps.yandex.ru/1.x/?lang=en-US&ll=-59.25,-37.31&z=10&l=map&size=650,450&pt=-59.155,-37.306,pm2gnm1~-59.151,-37.339,pm2gnm2~-59.123,-37.303,pm2gnm3~-59.120,-37.330,pm2gnm4~-59.191,-37.318,pm2gnm5~-59.625,-37.265,pm2gnm6~-59.385,-37.368,pm2gnm7" alt="Mapa estático de Tandil con la ubicación de los puntos limpios.">
-                    <p class="map-caption">Este es un mapa estático. La versión interactiva se implementará en la Fase 4.</p>
+                    <!-- Contenedor para el mapa interactivo -->
+                    <div id="map-interactive"></div>
+                    <p class="map-caption">Mapa interactivo de los puntos de reciclaje en Tandil.</p>
                 </div>
             </div>
         </section>
@@ -90,5 +93,9 @@
         </div>
     </footer>
 
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Nuestro script para el mapa -->
+    <script src="map.js"></script>
 </body>
 </html>

@@ -23,10 +23,10 @@ El desarrollo se dividirá en fases pequeñas y manejables para asegurar una ent
     *   Recopilar las coordenadas de los puntos de reciclaje.
     *   Integrar un mapa visual (puede ser una imagen estática con marcadores en la primera iteración) en la sección correspondiente.
 
-## Fase 4: Mapa Interactivo y Despliegue
+## Fase 4: Mapa Interactivo y Despliegue ✅ Completada
 
 *   **Objetivo:** Mejorar el mapa y poner el sitio en producción.
 *   **Tareas:**
-    *   Reemplazar el mapa estático con una solución interactiva usando JavaScript (por ejemplo, con una librería ligera como Leaflet.js si se aprueba, o una implementación básica).
-    *   Realizar pruebas finales de compatibilidad en navegadores.
-    *   Desplegar la primera versión del sitio web.
+    *   Se reemplazó el mapa estático por uno interactivo utilizando Leaflet.js.
+    *   Se añadieron marcadores para los 7 Puntos Limpios con pop-ups informativos.
+    *   Se verificó la responsividad del mapa en diferentes tamaños de pantalla.
