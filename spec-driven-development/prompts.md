@@ -1,4 +1,4 @@
-# Lesson 04 — Prompts
+# Lesson 05 — Prompts
 
 ## Prompt 1
 
@@ -30,3 +30,23 @@ In mission.md, please add the target audience:
 ## Prompt 5
 
 In tech-stack.md, specify that if we need to store location data for recycling points in the future, we will use SQLite because it is lightweight and easy to manage locally.
+
+
+# Lesson 06 — Prompts
+
+## Prompt 1
+
+Find the next phase on specs/roadmap.md, ask me about the feature spec. Create:
+
+A new directory YYYY-MM-DD-feature-name under specs for this feature work
+In there:
+plan.md as a series of numbered task groups.
+requirements.md for the scope, decisions, context
+validation.md for how to know the implementation succeeded and can be merged
+Refer to specs/mission.md and specs/tech-stack.md for guidance.
+
+Important: Do not write these files to disk yet. Present the content to me first so I can review and approve it.
+
+## Prompt 2
+
+Add a task group to the plan to have a minimal AgentClinic home page and update the rest of the feature spec to be in sync.
