@@ -1,0 +1,42 @@
+/* --- Estilos para Celulares (hasta 768px) --- */
+@media (max-width: 768px) {
+
+    /* --- Ajustes en la Cabecera --- */
+    header {
+        flex-direction: column; /* Apila el logo y la navegación verticalmente */
+        padding: 1rem;
+        gap: 1rem; /* Espacio entre el logo y el menú */
+    }
+
+    header nav ul {
+        justify-content: center; /* Centra los botones del menú */
+        flex-wrap: wrap; /* Permite que los botones pasen a la siguiente línea si no caben */
+        gap: 0.5rem 1rem; /* Espacio vertical y horizontal entre botones */
+    }
+
+    /* --- Ajustes en la Sección Hero --- */
+    #hero {
+        padding: 3rem 1rem; /* Menos espaciado en celulares */
+    }
+
+    #hero h2 {
+        font-size: 2.2rem; /* Título principal más pequeño */
+    }
+
+    #hero p {
+        font-size: 1rem; /* Texto de párrafo más pequeño */
+    }
+
+    /* --- Ajustes en el Contenido Principal --- */
+    .content-wrapper {
+        padding: 2rem 1rem; /* Menos espaciado en los costados */
+    }
+
+    .content-wrapper section {
+        padding: 1.5rem; /* Menos espaciado dentro de las tarjetas */
+    }
+
+    .content-wrapper section h3 {
+        font-size: 1.8rem; /* Títulos de sección más pequeños */
+    }
+}

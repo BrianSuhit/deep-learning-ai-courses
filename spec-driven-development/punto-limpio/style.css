@@ -1,0 +1,156 @@
+/* Importar la fuente 'Nunito' desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+/* --- Configuración General y Reset --- */
+html {
+    scroll-behavior: smooth; /* Desplazamiento suave al hacer clic en los enlaces del menú */
+}
+
+/* Estilos básicos del cuerpo */
+body {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    background-color: #f4f7f6; /* Un gris muy claro y limpio para el fondo */
+    color: #3a3a3a;
+    line-height: 1.6;
+}
+
+/* --- Estilos del Header (Cabecera) --- */
+header {
+    background-color: #00b987; /* Cabecera verde para unificar */
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky; /* Se queda fija en la parte superior */
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    box-sizing: border-box;
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); */ /* Sombra ya no es necesaria */
+}
+
+/* Estilo para el logo */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 60px; /* Un tamaño balanceado para la cabecera */
+}
+
+/* --- Estilos del Nav (Menú de Navegación) --- */
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 2rem; /* Más espacio entre los botones */
+}
+
+header nav a {
+    text-decoration: none;
+    color: #ffffff; /* Color de texto blanco para el fondo verde */
+    font-weight: 600;
+    font-size: 1rem;
+    transition: opacity 0.3s ease;
+}
+
+header nav a:hover {
+    opacity: 0.8; /* Efecto sutil al pasar el mouse */
+}
+
+/* --- Estilos de las Secciones Principales --- */
+
+/* Estilos para la sección de bienvenida (Hero) */
+#hero {
+    background-color: #00b987; /* Fondo verde para la sección principal */
+    color: #ffffff; /* Texto blanco para que contraste */
+    text-align: center;
+    padding: 5rem 2rem; /* Más espaciado vertical para impacto */
+}
+
+#hero h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+#hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Contenedor para el resto del contenido */
+.content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+/* Estilo para las secciones de contenido (Ubicaciones, Horarios, etc.) */
+.content-wrapper section {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+/* Títulos dentro de las tarjetas */
+.content-wrapper section h3 {
+    font-size: 2.2rem;
+    color: #00b987; /* Títulos con el color verde principal */
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+/* Listas dentro de las tarjetas */
+.content-wrapper ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.content-wrapper li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.content-wrapper li:last-child {
+    border-bottom: none;
+}
+
+.content-wrapper li strong {
+    color: #333;
+}
+
+/* --- Estilos del Footer (Pie de página) --- */
+footer {
+    background-color: #3a3a3a;
+    color: #e0e0e0;
+    text-align: center;
+    padding: 2rem;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* --- Estilos para la Barra de Scroll (WebKit) --- */
+::-webkit-scrollbar {
+    width: 12px; /* Ancho de la barra */
+}
+
+::-webkit-scrollbar-track {
+    background: #f4f7f6; /* Color del fondo de la barra, igual al body */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #00b987; /* El color verde principal */
+    border-radius: 20px; /* Bordes redondeados */
+    border: 3px solid #f4f7f6; /* Un borde para que parezca más delgada y elegante */
+}
