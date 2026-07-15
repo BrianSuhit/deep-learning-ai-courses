@@ -35,4 +35,13 @@ y este proyecto se adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.
     -   Se implementó la "Guía de Separación de Residuos" utilizando un diseño de tarjetas para distintos materiales.
 
 ### Commits
--   Total de commits para esta versión: 1 (`feat(SDD): Implement and complete Phase 2 - Static Content`)
+-   Total de commits para esta versión: 1 (`feat(SDD): Implement Phase 2 - Static Content`)
+
+## [0.4.0] - 2026-07-15
+
+### Added
+-   **Mapa Estático (Fase 3)**
+    -   Se integró una imagen de mapa estática en la sección "Mapa", generada a partir de las direcciones de los puntos limpios.
+
+### Commits
+-   Total de commits para esta versión: 1 (`feat(SDD): Implement Phase 3 - Initial Static Map`)

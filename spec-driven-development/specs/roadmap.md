@@ -16,7 +16,7 @@ El desarrollo se dividirá en fases pequeñas y manejables para asegurar una ent
     *   Redactar y añadir el contenido para la sección "Cómo reciclar".
     *   Diseñar y añadir la "Guía de separación de residuos".
 
-## Fase 3: Mapa de Puntos Limpios (Versión Inicial)
+## Fase 3: Mapa de Puntos Limpios (Versión Inicial) ✅ Completada
 
 *   **Objetivo:** Implementar una primera versión funcional del mapa.
 *   **Tareas:**
